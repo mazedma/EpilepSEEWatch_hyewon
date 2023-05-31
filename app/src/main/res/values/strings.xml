@@ -5,4 +5,8 @@
     values-round/strings.xml for round devices.
     -->
     <string name="hello_world">Hello Square World!</string>
+    <string name="title_activity_seizure">SeizureActivity</string>
+    <string name="title_activity_side_effect">SideEffectActivity</string>
+    <string name="title_activity_period">PeriodActivity</string>
+    <string name="title_activity_drug">DrugActivity</string>
 </resources>
