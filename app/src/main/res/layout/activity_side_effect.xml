@@ -153,7 +153,7 @@
                 android:id="@+id/button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Button"
+                android:text="기록하기"
                 android:layout_gravity="center"/>
         </LinearLayout>
     </FrameLayout>
