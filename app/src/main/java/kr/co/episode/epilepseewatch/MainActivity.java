@@ -40,7 +40,7 @@ public class MainActivity extends Activity {
             }
         });
 
-        // 발작 버튼
+        // 생리 버튼
         activityMainBinding.periodButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,7 +49,7 @@ public class MainActivity extends Activity {
             }
         });
 
-        // 발작 버튼
+        // 약물 버튼
         activityMainBinding.drugButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
