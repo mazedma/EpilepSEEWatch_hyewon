@@ -25,7 +25,9 @@ public class SideEffectActivity extends Activity {
 
     // 부작용 라디오버튼 결과값 가져오기
     public static Context context_sideEffect; // context 변수 선언
-    public String checkedRadioSE; // 다른 Activity에서 접근할 변수
+    public String checkedRadioSE; // 다른 Activity에서 접근할 변수 : 라디오 선택값
+    public Date recordedTimeSE;  // 현재시간
+
 
 
     @Override
@@ -49,6 +51,8 @@ public class SideEffectActivity extends Activity {
                 int checkedRadioButtonId = binding.radioGroup.getCheckedRadioButtonId(); //체크된 라디오버튼 아이디 가져오기
                 RadioButton radioButton = (RadioButton)findViewById(checkedRadioButtonId); // 받은 id 값으로 해당 뷰 불러오기
                 checkedRadioSE = radioButton.getText().toString(); // text값 가져와서 변수에 저장
+
+                recordedTimeSE = mDate; // 현재시간 할당
 
                 // 확인 화면 띄우기
                 Intent intent = new Intent(getApplicationContext(), SideEffectCompleteActivity.class);
