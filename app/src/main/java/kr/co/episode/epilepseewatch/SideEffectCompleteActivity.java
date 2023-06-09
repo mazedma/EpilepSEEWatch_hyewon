@@ -7,8 +7,6 @@ import android.widget.TextView;
 import kr.co.episode.epilepseewatch.databinding.ActivitySideEffectCompleteBinding;
 
 public class SideEffectCompleteActivity extends Activity {
-
-    private TextView mTextView;
     private ActivitySideEffectCompleteBinding binding;
 
     @Override
@@ -18,7 +16,9 @@ public class SideEffectCompleteActivity extends Activity {
         binding = ActivitySideEffectCompleteBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        mTextView = binding.text;
+        // SideEffectActivity에서 선택된 라디오버튼의 text값 가져오기
+        String checkedRadio =((SideEffectActivity)SideEffectActivity.context_sideEffect).checkedRadioSE;
+        binding.textView6.setText(checkedRadio); //text값 출력
     }
 
 }
