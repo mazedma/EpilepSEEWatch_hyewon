@@ -20,4 +20,5 @@ public class SideEffectCompleteActivity extends Activity {
 
         mTextView = binding.text;
     }
+
 }

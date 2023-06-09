@@ -1,7 +1,9 @@
 package kr.co.episode.epilepseewatch;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -27,6 +29,15 @@ public class SideEffectActivity extends Activity {
         setContentView(binding.getRoot());
 
         binding.date.setText(getTime); //오늘날짜 화면에 출력
+
+        // 기록하기 버튼 클릭 리스너
+        binding.button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), SideEffectCompleteActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 
