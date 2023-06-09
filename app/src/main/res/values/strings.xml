@@ -9,4 +9,5 @@
     <string name="title_activity_side_effect">SideEffectActivity</string>
     <string name="title_activity_period">PeriodActivity</string>
     <string name="title_activity_drug">DrugActivity</string>
+    <string name="title_activity_side_effect_complete">SideEffectCompleteActivity</string>
 </resources>

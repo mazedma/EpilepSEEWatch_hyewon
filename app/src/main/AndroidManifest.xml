@@ -24,25 +24,25 @@
             android:value="true" />
 
         <activity
+            android:name=".SideEffectCompleteActivity"
+            android:exported="false"
+            android:label="@string/title_activity_side_effect_complete"></activity>
+        <activity
             android:name=".DrugActivity"
             android:exported="false"
-            android:label="@string/title_activity_drug">
-        </activity>
+            android:label="@string/title_activity_drug"></activity>
         <activity
             android:name=".PeriodActivity"
             android:exported="false"
-            android:label="@string/title_activity_period">
-        </activity>
+            android:label="@string/title_activity_period"></activity>
         <activity
             android:name=".SideEffectActivity"
             android:exported="false"
-            android:label="@string/title_activity_side_effect">
-        </activity>
+            android:label="@string/title_activity_side_effect"></activity>
         <activity
             android:name=".SeizureActivity"
             android:exported="false"
-            android:label="@string/title_activity_seizure">
-        </activity>
+            android:label="@string/title_activity_seizure"></activity>
         <activity
             android:name=".MainActivity"
             android:exported="true"
