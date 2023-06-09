@@ -1,15 +1,25 @@
 package kr.co.episode.epilepseewatch;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import kr.co.episode.epilepseewatch.databinding.ActivityPeriodBinding;
 
 public class PeriodActivity extends Activity {
 
-    private TextView mTextView;
     private ActivityPeriodBinding binding;
+
+    //시간 출력
+    long now = System.currentTimeMillis(); // 현재 시간 가져오기
+    Date mDate = new Date(now); // Date 형식으로 고치기
+    SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd"); // 시간을 나타낼 포맷 설정
+    String getTime = simpleDate.format(mDate); // getTime 변수에 값을 저장
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +28,17 @@ public class PeriodActivity extends Activity {
         binding = ActivityPeriodBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        mTextView = binding.text;
+        // 오늘 날짜 화면에 출력
+        binding.date.setText(getTime);
+
+        // 기록하기 버튼 클릭 리스너
+        binding.button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // 확인 화면 띄우기
+                Intent intent = new Intent(getApplicationContext(), PeriodCompleteActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
