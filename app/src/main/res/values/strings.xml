@@ -12,4 +12,5 @@
     <string name="title_activity_side_effect_complete">SideEffectCompleteActivity</string>
     <string name="title_activity_period_complete">PeriodCompleteActivity</string>
     <string name="title_activity_seizure_complete">SeizureCompleteActivity</string>
+    <string name="title_activity_drug_complete">DrugCompleteActivity</string>
 </resources>

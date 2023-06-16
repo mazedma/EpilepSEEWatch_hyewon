@@ -24,9 +24,13 @@
             android:value="true" />
 
         <activity
+            android:name=".DrugCompleteActivity"
+            android:exported="false"
+            android:label="@string/title_activity_drug_complete"></activity>
+        <activity
             android:name=".SeizureCompleteActivity"
             android:exported="false"
-            android:label="@string/title_activity_seizure_complete"></activity>
+            android:label="@string/title_activity_seizure_complete" />
         <activity
             android:name=".PeriodCompleteActivity"
             android:exported="false"
