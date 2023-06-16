@@ -26,11 +26,5 @@ public class SeizureCompleteActivity extends Activity {
         binding.seizureStartTextview.setText(seizureStart);
         binding.seizureDurationTextview.setText(seizureDuration);
 
-        binding.closeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
     }
 }
