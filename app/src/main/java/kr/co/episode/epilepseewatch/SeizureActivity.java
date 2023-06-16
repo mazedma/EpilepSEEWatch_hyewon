@@ -51,12 +51,12 @@ public class SeizureActivity extends Activity {
                         seizureStart = new Date(startTime);
                     }
                     handler.postDelayed(runnable, 0);
-                    binding.startStopButton.setText("Stop");
+                    binding.startStopButton.setText("멈춤");
                 } else {
                     // Stop button action
                     timeSwapBuff += timeInMilliseconds;
                     handler.removeCallbacks(runnable);
-                    binding.startStopButton.setText("Start");
+                    binding.startStopButton.setText("발작 시작");
 
                     if (seizureStart != null) {
                         // Calculate seizure duration
