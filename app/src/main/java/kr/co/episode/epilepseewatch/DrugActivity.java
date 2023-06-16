@@ -53,6 +53,7 @@ public class DrugActivity extends Activity {
                 // 확인 화면 띄우기
                 Intent intent = new Intent(getApplicationContext(), DrugCompleteActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }

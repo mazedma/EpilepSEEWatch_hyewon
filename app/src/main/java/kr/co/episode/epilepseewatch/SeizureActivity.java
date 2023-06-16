@@ -67,6 +67,7 @@ public class SeizureActivity extends Activity {
                         intent.putExtra("seizureStart", dateFormatter.format(seizureStart));
                         intent.putExtra("seizureDuration", formatTime(seizureDuration));
                         startActivity(intent);
+                        finish();
                     }
                 }
                 isRunning = !isRunning;

@@ -57,6 +57,7 @@ public class SideEffectActivity extends Activity {
                 // 확인 화면 띄우기
                 Intent intent = new Intent(getApplicationContext(), SideEffectCompleteActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }

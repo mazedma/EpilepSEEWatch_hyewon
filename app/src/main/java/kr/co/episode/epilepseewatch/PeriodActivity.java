@@ -51,6 +51,7 @@ public class PeriodActivity extends Activity {
                 // 확인 화면 띄우기
                 Intent intent = new Intent(getApplicationContext(), PeriodCompleteActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }
