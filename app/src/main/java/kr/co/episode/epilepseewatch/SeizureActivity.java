@@ -7,13 +7,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import android.widget.TextView;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import kr.co.episode.epilepseewatch.databinding.ActivitySeizureBinding;
 
 public class SeizureActivity extends Activity {
 
     private ActivitySeizureBinding binding;
+
     private Handler handler;
     private Runnable runnable;
 
@@ -22,7 +24,10 @@ public class SeizureActivity extends Activity {
     private long timeSwapBuff = 0L;
     private long updateTime = 0L;
 
-    private long seizureDuration = 0L;
+    private Date seizureStart = null;
+    private SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+    private boolean isRunning = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,41 +38,35 @@ public class SeizureActivity extends Activity {
 
         handler = new Handler();
 
-        binding.startButton.setOnClickListener(new View.OnClickListener() {
+        binding.startStopButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startTime = System.currentTimeMillis();
-                handler.postDelayed(runnable, 0);
-                binding.startButton.setEnabled(false);
-                binding.stopButton.setEnabled(true);
-                binding.resetButton.setEnabled(false);
-            }
-        });
+                if (!isRunning) {
+                    // Start button action
+                    if (startTime == 0L) {
+                        startTime = System.currentTimeMillis();
+                        seizureStart = new Date(startTime);
+                    } else {
+                        timeSwapBuff = 0L;
+                        startTime = System.currentTimeMillis();
+                        seizureStart = new Date(startTime);
+                    }
+                    handler.postDelayed(runnable, 0);
+                    binding.startStopButton.setText("Stop");
+                } else {
+                    // Stop button action
+                    timeSwapBuff += timeInMilliseconds;
+                    handler.removeCallbacks(runnable);
+                    binding.startStopButton.setText("Start");
 
-        binding.stopButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                timeSwapBuff += timeInMilliseconds;
-                handler.removeCallbacks(runnable);
-                seizureDuration = updateTime;
-                binding.startButton.setEnabled(true);
-                binding.stopButton.setEnabled(false);
-                binding.resetButton.setEnabled(true);
-            }
-        });
-
-        binding.resetButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startTime = 0L;
-                timeInMilliseconds = 0L;
-                timeSwapBuff = 0L;
-                updateTime = 0L;
-                seizureDuration = 0L;
-                binding.timerTextview.setText("00:00.000");
-                binding.startButton.setEnabled(true);
-                binding.stopButton.setEnabled(false);
-                binding.resetButton.setEnabled(false);
+                    if (seizureStart != null) {
+                        // Display seizure duration
+                        long seizureDuration = System.currentTimeMillis() - seizureStart.getTime();
+                        String formattedDuration = formatTime(seizureDuration);
+                        binding.timerTextview.setText(formattedDuration);
+                    }
+                }
+                isRunning = !isRunning;
             }
         });
 
@@ -88,5 +87,11 @@ public class SeizureActivity extends Activity {
         int minutes = (int) ((time / (1000 * 60)) % 60);
 
         return String.format("%02d:%02d.%03d", minutes, seconds, milliseconds);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacks(runnable);
     }
 }
