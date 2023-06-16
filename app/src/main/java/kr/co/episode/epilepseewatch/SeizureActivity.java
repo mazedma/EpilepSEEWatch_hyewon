@@ -1,16 +1,15 @@
 package kr.co.episode.epilepseewatch;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+
+import kr.co.episode.epilepseewatch.databinding.ActivitySeizureBinding;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import kr.co.episode.epilepseewatch.databinding.ActivitySeizureBinding;
 
 public class SeizureActivity extends Activity {
 
@@ -25,6 +24,7 @@ public class SeizureActivity extends Activity {
     private long updateTime = 0L;
 
     private Date seizureStart = null;
+    private long seizureDuration = 0L;
     private SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     private boolean isRunning = false;
@@ -32,7 +32,6 @@ public class SeizureActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         binding = ActivitySeizureBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -60,10 +59,14 @@ public class SeizureActivity extends Activity {
                     binding.startStopButton.setText("Start");
 
                     if (seizureStart != null) {
-                        // Display seizure duration
-                        long seizureDuration = System.currentTimeMillis() - seizureStart.getTime();
-                        String formattedDuration = formatTime(seizureDuration);
-                        binding.timerTextview.setText(formattedDuration);
+                        // Calculate seizure duration
+                        seizureDuration = System.currentTimeMillis() - seizureStart.getTime();
+
+                        // Open new activity to display seizure start and duration
+                        Intent intent = new Intent(SeizureActivity.this, SeizureCompleteActivity.class);
+                        intent.putExtra("seizureStart", dateFormatter.format(seizureStart));
+                        intent.putExtra("seizureDuration", formatTime(seizureDuration));
+                        startActivity(intent);
                     }
                 }
                 isRunning = !isRunning;
