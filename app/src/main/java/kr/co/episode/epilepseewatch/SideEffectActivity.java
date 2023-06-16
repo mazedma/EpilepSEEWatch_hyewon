@@ -23,7 +23,7 @@ public class SideEffectActivity extends Activity {
     SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd"); // 시간을 나타낼 포맷 설정
     String getTime = simpleDate.format(mDate); // getTime 변수에 값을 저장
 
-    // 부작용 라디오버튼 결과값 가져오기
+    // 다른 Activity 접근
     public static Context context_sideEffect; // context 변수 선언
     public String checkedRadioSE; // 다른 Activity에서 접근할 변수 : 라디오 선택값
     public Date recordedTimeSE;  // 현재시간
